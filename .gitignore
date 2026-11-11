@@ -1,1 +1,11 @@
-.codegraph/
+# The working tree is the decompiled Dome Keeper project. Only our mod files are tracked;
+# the game's files must never be committed (Modding EULA).
+/*
+!/.gitignore
+!/CLAUDE.md
+!/README.md
+!/workshop/
+!/mods-unpacked/
+/mods-unpacked/*
+!/mods-unpacked/Namds-Miner/
+.DS_Store

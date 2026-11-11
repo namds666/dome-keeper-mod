@@ -1,0 +1,22 @@
+{
+	"name": "Miner",
+	"namespace": "Namds",
+	"version_number": "1.0.0",
+	"description": "A new keeper: the Miner. Drop mines on the 1x1 tile grid and blast cross-shaped tunnels through the rock, Bomberman style.",
+	"website_url": "https://github.com/namds666/dome-keeper-mod",
+	"dependencies": [],
+	"extra": {
+		"godot": {
+			"authors": ["namds666"],
+			"optional_dependencies": [],
+			"compatible_game_version": ["5.0.8"],
+			"compatible_mod_loader_version": ["7.0.0"],
+			"incompatibilities": [],
+			"load_before": [],
+			"tags": ["keeper"],
+			"config_schema": {},
+			"description_rich": "",
+			"image": null
+		}
+	}
+}

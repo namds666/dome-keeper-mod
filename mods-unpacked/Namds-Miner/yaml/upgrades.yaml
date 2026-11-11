@@ -1,0 +1,143 @@
+keeper9:
+  type: keeper
+  scenes:
+    keeper: mods-unpacked/Namds-Miner/keeper/Miner.tscn
+  addslots: [keepersuit, keepersupplement]
+  unlockslimits: [keeper9]
+  propertyChanges:
+    - keeper1.drillStrength = 2
+    - keeper1.maxSpeed = 52
+    - keeper1.speedLossPerCarry = 5.7
+    - keeper1.jetpackStage = 0
+    - keeper1.acceleration = 5
+    - keeper1.deceleration = 4
+    - keeper1.slowdownRecovery = 4
+    - keeper1.tileKnockback = 7
+    - keeper1.tileHitCooldown = 0.35
+    - keeper1.hardtilesmodifier = 1.0
+    - keeper1.destroyindestructibletiles = false/h
+    - keeper.additionalupwardsspeed = 0.0
+    - keeper.speedbuff = 0.0
+    - keeper.drillbuff = 0.0
+    - keeper.zoominmine = 0.0
+    - keeper9.maxmines = 1
+    - keeper9.blastrange = 2
+    - keeper9.blastdamage = 6
+    - keeper9.fuse = 2.5
+    - keeper9.detonator = false/h
+
+keeper9mines1:
+  limit: [mining]
+  cost: iron=3
+  propertyChanges:
+    - keeper9.maxmines += 1
+  predecessors: [keeper9]
+keeper9mines2:
+  cost: iron=7, water=2
+  propertyChanges:
+    - keeper9.maxmines += 1
+  predecessors: [keeper9mines1]
+keeper9mines3:
+  cost: iron=14, water=4
+  propertyChanges:
+    - keeper9.maxmines += 2
+  predecessors: [keeper9mines2]
+
+keeper9range1:
+  limit: [mining]
+  cost: iron=4
+  propertyChanges:
+    - keeper9.blastrange += 1
+  predecessors: [keeper9]
+keeper9range2:
+  cost: iron=8, water=2
+  propertyChanges:
+    - keeper9.blastrange += 1
+  predecessors: [keeper9range1]
+keeper9range3:
+  cost: iron=14, water=5
+  propertyChanges:
+    - keeper9.blastrange += 2
+  predecessors: [keeper9range2]
+
+keeper9power1:
+  limit: [mining]
+  cost: iron=4
+  propertyChanges:
+    - keeper9.blastdamage += 10
+  predecessors: [keeper9]
+keeper9power2:
+  cost: iron=9, water=3
+  propertyChanges:
+    - keeper9.blastdamage += 30
+  predecessors: [keeper9power1]
+keeper9power3:
+  cost: iron=16, water=6
+  propertyChanges:
+    - keeper9.blastdamage += 120
+  predecessors: [keeper9power2]
+
+keeper9fuse1:
+  limit: [mining]
+  cost: iron=5
+  propertyChanges:
+    - keeper9.fuse = 1.8
+  predecessors: [keeper9]
+keeper9fuse2:
+  cost: iron=10, water=3
+  propertyChanges:
+    - keeper9.fuse = 1.2
+  predecessors: [keeper9fuse1]
+keeper9detonator:
+  cost: iron=8, water=4
+  propertyChanges:
+    - keeper9.detonator = true
+  predecessors: [keeper9fuse1]
+
+keeper9drill1:
+  limit: [mining]
+  cost: iron=4
+  propertyChanges:
+    - keeper1.drillStrength += 5
+  predecessors: [keeper9]
+keeper9drill2:
+  cost: iron=8
+  propertyChanges:
+    - keeper1.drillStrength += 11
+  predecessors: [keeper9drill1]
+keeper9drill3:
+  cost: iron=14
+  propertyChanges:
+    - keeper1.drillStrength += 28
+  predecessors: [keeper9drill2]
+
+keeper9speed1:
+  cost: iron=4
+  propertyChanges:
+    - keeper1.maxSpeed += 18
+    - keeper1.jetpackStage += 1
+  predecessors: [keeper9]
+keeper9speed2:
+  cost: iron=8
+  propertyChanges:
+    - keeper1.maxSpeed += 20
+    - keeper1.jetpackStage += 1
+  predecessors: [keeper9speed1]
+keeper9speed3:
+  cost: iron=12
+  propertyChanges:
+    - keeper1.maxSpeed += 22
+    - keeper1.jetpackStage += 1
+  predecessors: [keeper9speed2]
+
+keeper9carry1:
+  limit: [carry]
+  cost: iron=4
+  propertyChanges:
+    - keeper1.speedLossPerCarry = 2.15
+  predecessors: [keeper9]
+keeper9carry2:
+  cost: iron=8
+  propertyChanges:
+    - keeper1.speedLossPerCarry = 0.9
+  predecessors: [keeper9carry1]

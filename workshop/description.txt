@@ -1,0 +1,24 @@
+[h1]Miner[/h1]
+A new keeper who digs with explosives.
+
+[h2]Ability[/h2]
+Press [b]C[/b] (keyboard) or [b]RT[/b] (gamepad) to drop a mine on the tile you are standing in. After its fuse burns out, the mine blasts a cross through the rock: up, down, left and right. A tile the blast cannot break stops that arm of the cross. A blast that reaches another mine sets it off, so you can build chain reactions. You can rebind the key in Options > Key Bindings.
+
+[h2]Upgrades[/h2]
+[list]
+[*][b]Extra Mine / Mine Belt / Mine Bandolier[/b]: more mines on the field at once (1 → 5).
+[*][b]Long Fuse Line / Shaped Charge / Tunnel Blaster[/b]: longer blast (2 → 6 tiles each way).
+[*][b]Dense Powder / High Explosive / Core Charge[/b]: harder blasts that break harder rock.
+[*][b]Quick Fuse / Hair Trigger[/b]: shorter fuse (2.5s → 1.2s).
+[*][b]Detonator[/b]: press Drop Mine with no mine left, or while standing on one, to blow up all your mines at once.
+[*]Pickaxe, Jetpack and Strong Back upgrades for mining by hand, flying and carrying.
+[/list]
+
+[h2]Notes[/h2]
+[list]
+[*]Built for Dome Keeper 5.0.8.
+[*]The Miner uses the Engineer's body and music with a warm tint. Custom art may come later.
+[*]Mods turn off the Prestige leaderboards.
+[/list]
+
+Source: https://github.com/namds666/dome-keeper-mod
