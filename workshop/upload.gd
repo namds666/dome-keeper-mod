@@ -4,7 +4,7 @@ extends SceneTree
 #   .tools/godot/macos_tools.app/Contents/MacOS/Godot --headless --path . --script workshop/upload.gd
 
 const APP_ID := 1637320
-const VISIBILITY_UNLISTED := 3
+const VISIBILITY_PUBLIC := 0
 const ROOT := "res://"
 const ITEM_ID_FILE := "res://workshop/item_id.txt"
 
@@ -66,8 +66,7 @@ func _update(file_id: int, first: bool) -> void:
 	steam.setItemContent(handle, content_dir)
 	steam.setItemPreview(handle, ProjectSettings.globalize_path(ROOT + "workshop/preview.png"))
 	steam.setItemTags(handle, ["Keeper"])
-	if first:
-		steam.setItemVisibility(handle, VISIBILITY_UNLISTED)
+	steam.setItemVisibility(handle, VISIBILITY_PUBLIC)
 	steam.item_updated.connect(_on_item_updated, CONNECT_ONE_SHOT)
 	steam.submitItemUpdate(handle, "v%s" % version)
 	print("Uploading v%s from %s" % [version, content_dir])
