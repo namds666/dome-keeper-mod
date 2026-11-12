@@ -21,7 +21,7 @@ const DEFAULT_VALUES := {
 	"keeper1.tilehitcooldown": 0.35,
 	"keeper1.hardtilesmodifier": 1.0,
 	"keeper1.destroyindestructibletiles": false,
-	"keeper9.maxmines": 1,
+	"keeper9.maxmines": 2,
 	"keeper9.blastrange": 2,
 	"keeper9.blastdamage": 6,
 	"keeper9.fuse": 2.5,
@@ -52,6 +52,11 @@ func _seedMissingValues() -> void:
 			Data.values[fullKey] = DEFAULT_VALUES[key]
 	if not StageManager.isInLevel():
 		Data.values[playerId + ".keeper1.maxspeed"] = MENU_MAX_SPEED
+
+
+# The Miner only digs with mines.
+func drill_check() -> void:
+	pass
 
 
 func mineHit() -> void:

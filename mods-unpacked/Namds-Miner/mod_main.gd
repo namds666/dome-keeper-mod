@@ -18,14 +18,6 @@ const ICON_SOURCES := {
 	"keeper9fuse1": "blastminingproductiontime1",
 	"keeper9fuse2": "blastminingproductiontime1",
 	"keeper9detonator": "blastminingimpactdetonation",
-	"keeper9drill1": "drill1",
-	"keeper9drill2": "drill2",
-	"keeper9drill3": "drill3",
-	"keeper9speed1": "jetpackspeed1",
-	"keeper9speed2": "jetpackspeed2",
-	"keeper9speed3": "jetpackspeed3",
-	"keeper9carry1": "jetpackstrength1",
-	"keeper9carry2": "jetpackstrength2",
 }
 
 var mod_dir_path := ""

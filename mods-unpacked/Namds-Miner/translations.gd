@@ -3,7 +3,7 @@ extends RefCounted
 const TEXTS := {
 	"en": {
 		"upgrades.keeper9.title": "Miner",
-		"upgrades.keeper9.desc": "Drops mines on the tile grid. Each mine blasts a cross through the rock and sets off any mine it reaches. Press [C] / RT to drop a mine.",
+		"upgrades.keeper9.desc": "Cannot drill. Drops mines on the tile grid instead. Each mine blasts a cross through the rock and sets off any mine it reaches. Press [C] / RT to drop a mine.",
 		"options.keybindings.action.keeper9.mine": "Drop Mine",
 
 		"properties.keeper9.maxmines": "Mines {}",
@@ -36,21 +36,5 @@ const TEXTS := {
 		"upgrades.keeper9fuse2.desc": "Mines explode much sooner.",
 		"upgrades.keeper9detonator.title": "Detonator",
 		"upgrades.keeper9detonator.desc": "Press Drop Mine with no mine left, or on a mine, to blow up all your mines at once.",
-		"upgrades.keeper9drill1.title": "Pickaxe 1",
-		"upgrades.keeper9drill1.desc": "Mine rock faster by hand.",
-		"upgrades.keeper9drill2.title": "Pickaxe 2",
-		"upgrades.keeper9drill2.desc": "Mine rock faster by hand.",
-		"upgrades.keeper9drill3.title": "Pickaxe 3",
-		"upgrades.keeper9drill3.desc": "Mine rock faster by hand.",
-		"upgrades.keeper9speed1.title": "Jetpack 1",
-		"upgrades.keeper9speed1.desc": "Fly faster.",
-		"upgrades.keeper9speed2.title": "Jetpack 2",
-		"upgrades.keeper9speed2.desc": "Fly faster.",
-		"upgrades.keeper9speed3.title": "Jetpack 3",
-		"upgrades.keeper9speed3.desc": "Fly faster.",
-		"upgrades.keeper9carry1.title": "Strong Back 1",
-		"upgrades.keeper9carry1.desc": "Lose less speed while carrying resources.",
-		"upgrades.keeper9carry2.title": "Strong Back 2",
-		"upgrades.keeper9carry2.desc": "Lose less speed while carrying resources.",
 	},
 }
