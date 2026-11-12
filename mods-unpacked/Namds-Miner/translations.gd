@@ -14,6 +14,8 @@ const TEXTS := {
 		"properties.keeper9.vaulter": "Bomber Vaulter",
 		"properties.keeper9.domer": "Bomber Domer",
 		"properties.keeper9.domerdamage": "Dome Bomb Damage {}",
+		"properties.keeper9.clusters": "Clusters {}",
+		"properties.keeper9.clusterex": "Bomber Cluster - Ex",
 
 		"upgrades.keeper9mines1.title": "Extra Mine",
 		"upgrades.keeper9mines1.desc": "Mines on the field at once +1.",
@@ -43,5 +45,13 @@ const TEXTS := {
 		"upgrades.keeper9vaulter.desc": "Resources your mines blast loose go straight into the vault. No carrying.",
 		"upgrades.keeper9domer.title": "Bomber Domer",
 		"upgrades.keeper9domer.desc": "Any monster that attacks the dome gets a bomb thrown at it.",
+		"upgrades.keeper9cluster1.title": "Bomber Cluster",
+		"upgrades.keeper9cluster1.desc": "Your mine throws 2 cluster bombs when it explodes. They blow up after the same fuse, or sooner when a blast reaches them.",
+		"upgrades.keeper9cluster2.title": "Bomber Cluster II",
+		"upgrades.keeper9cluster2.desc": "Cluster bombs per mine +1.",
+		"upgrades.keeper9cluster3.title": "Bomber Cluster III",
+		"upgrades.keeper9cluster3.desc": "Cluster bombs per mine +1.",
+		"upgrades.keeper9clusterex.title": "Bomber Cluster - Ex",
+		"upgrades.keeper9clusterex.desc": "Each cluster bomb throws half as many smaller cluster bombs of its own.",
 	},
 }

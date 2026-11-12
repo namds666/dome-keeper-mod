@@ -29,6 +29,8 @@ const DEFAULT_VALUES := {
 	"keeper9.vaulter": false,
 	"keeper9.domer": false,
 	"keeper9.domerdamage": 40,
+	"keeper9.clusters": 0,
+	"keeper9.clusterex": false,
 }
 const MENU_MAX_SPEED := 180
 
@@ -93,6 +95,8 @@ func placeMine(coord: Vector2) -> void:
 	mine.blastRange = int(Data.of(playerId + ".keeper9.blastrange"))
 	mine.blastDamage = Data.of(playerId + ".keeper9.blastdamage")
 	mine.vaulter = Data.ofOr(playerId + ".keeper9.vaulter", false)
+	mine.clusters = int(Data.ofOr(playerId + ".keeper9.clusters", 0))
+	mine.clusterEx = Data.ofOr(playerId + ".keeper9.clusterex", false)
 	Level.map.add_child(mine)
 	mine.position = Level.map.getTilePos(coord)
 
@@ -105,5 +109,5 @@ func detonateAll() -> void:
 
 func _placedMines() -> Array:
 	return get_tree().get_nodes_in_group(MinerIds.MINE_GROUP).filter(
-		func(m): return m.ownerPlayerId == playerId and not m.exploded
+		func(m): return m.ownerPlayerId == playerId and not m.exploded and not m.isCluster()
 	)

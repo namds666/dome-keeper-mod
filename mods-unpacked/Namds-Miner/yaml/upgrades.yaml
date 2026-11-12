@@ -28,6 +28,8 @@ keeper9:
     - keeper9.vaulter = false/h
     - keeper9.domer = false/h
     - keeper9.domerdamage = 40
+    - keeper9.clusters = 0
+    - keeper9.clusterex = false/h
 
 keeper9mines1:
   limit: [mining]
@@ -108,3 +110,24 @@ keeper9domer:
   propertyChanges:
     - keeper9.domer = true
   predecessors: [keeper9vaulter]
+
+keeper9cluster1:
+  cost: iron=2, water=1
+  propertyChanges:
+    - keeper9.clusters = 2
+  predecessors: [keeper9mines1]
+keeper9cluster2:
+  cost: iron=3, water=1
+  propertyChanges:
+    - keeper9.clusters += 1
+  predecessors: [keeper9cluster1]
+keeper9cluster3:
+  cost: iron=4, water=2
+  propertyChanges:
+    - keeper9.clusters += 1
+  predecessors: [keeper9cluster2]
+keeper9clusterex:
+  cost: iron=6, water=2
+  propertyChanges:
+    - keeper9.clusterex = true
+  predecessors: [keeper9cluster3]

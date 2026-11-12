@@ -20,6 +20,10 @@ const ICON_SOURCES := {
 	"keeper9detonator": "blastminingimpactdetonation",
 	"keeper9vaulter": "condenserautocollect",
 	"keeper9domer": "domesupplementelectrifiedsurface2",
+	"keeper9cluster1": "blastminingstickycharge",
+	"keeper9cluster2": "blastminingstickycharge",
+	"keeper9cluster3": "blastminingstickycharge",
+	"keeper9clusterex": "blastminingtriple",
 }
 
 var mod_dir_path := ""
