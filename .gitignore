@@ -9,3 +9,5 @@
 /mods-unpacked/*
 !/mods-unpacked/Namds-Miner/
 .DS_Store
+
+!/mac/

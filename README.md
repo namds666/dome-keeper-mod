@@ -9,3 +9,7 @@ Steam Workshop: https://steamcommunity.com/sharedfiles/filedetails/?id=383772847
 Source: `mods-unpacked/Namds-Miner/`. Packaging and upload: `workshop/`. Setup notes: `CLAUDE.md`.
 
 This repo holds only the mod's own files. It contains no Dome Keeper game files.
+
+## Playing on macOS
+
+The Mac version of Dome Keeper ships with mods turned off. Run `mac/enable-mods.command` once (double-click it in Finder), then start the game from Steam. Your subscribed Workshop mods load. `mac/disable-mods.command` turns this off again.

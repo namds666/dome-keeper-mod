@@ -18,7 +18,7 @@ Remote: `git@github.com-namds666:namds666/dome-keeper-mod.git` (public). Commits
 ## Repo layout
 
 The working tree is the decompiled game project. `.gitignore` whitelists only our files:
-`CLAUDE.md`, `README.md`, `workshop/` and `mods-unpacked/Namds-Miner/`. Everything else is local only:
+`CLAUDE.md`, `README.md`, `workshop/`, `mac/` and `mods-unpacked/Namds-Miner/`. Everything else is local only:
 - `.tools/godot/macos_tools.app`: the modding Godot editor, from DomeKeeperMods/Docs release `5.1`. Stock Godot does not work.
 - `.tools/gdre/`: GDRETools (decompiler). `.tools/docs-wiki/`: clone of the DomeKeeperMods docs wiki.
 - `mods-unpacked/Namds-MinerTest/`: local test driver, never shipped.
@@ -31,6 +31,8 @@ Rebuild the project after a game update:
 Then copy the output over the repo root (keep `.git`, our files and `.tools`), remove `disable_mods` from `_custom_features` in `project.godot` (it turns mods off in the editor), and run `.tools/godot/macos_tools.app/Contents/MacOS/Godot --headless --path . --import`.
 
 ## Game facts for 5.0.8 (checked in the decompiled code)
+
+- The macOS Steam build is exported with the `disable_mods` feature tag: mods are off and the title screen has no Mods button. `override.cfg` cannot remove a feature tag. `mac/enable-mods.command` puts `override.cfg` in `Contents/MacOS/` that swaps the `ModLoaderStore` autoload for `mac/ModLoaderStoreMac.gd` (copied to `user://`), which turns mods and Workshop loading on. `mac/disable-mods.command` undoes it. The stock profile `dome_default.tres` also has `load_from_steam_workshop = false`.
 
 - The docs' `Keepers.register_keeper` (5.1+) does not exist in 5.0.8. `mod_main.gd` uses it when present, else registers by hand: `Data.registerKeeper`, `GameWorld.unlockElement`, `take_over_path` aliases for sprite frames, loadout icons and `res://content/keeper/<Id>InputProcessor.gd`.
 - Keeper ids must be `keeper` + one digit: `LoadoutKeeper.to_bytes` sends `int(id.lstrip("keeper"))`, and `SaveGame` treats only 7-character ids as keepers. Vanilla uses 1–5. The Miner is `keeper9`.
