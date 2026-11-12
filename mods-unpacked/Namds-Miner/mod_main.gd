@@ -18,6 +18,8 @@ const ICON_SOURCES := {
 	"keeper9fuse1": "blastminingproductiontime1",
 	"keeper9fuse2": "blastminingproductiontime1",
 	"keeper9detonator": "blastminingimpactdetonation",
+	"keeper9vaulter": "condenserautocollect",
+	"keeper9domer": "domesupplementelectrifiedsurface2",
 }
 
 var mod_dir_path := ""
@@ -31,6 +33,8 @@ func _init() -> void:
 	ModLoaderMod.install_script_extension(ext_dir.path_join("systems/options/Options.gd"))
 	ModLoaderMod.install_script_extension(ext_dir.path_join("systems/options/KeyBindingsPanel.gd"))
 	ModLoaderMod.install_script_extension(ext_dir.path_join("systems/audio/Audio.gd"))
+	ModLoaderMod.install_script_extension(ext_dir.path_join("content/map/Map.gd"))
+	ModLoaderMod.install_script_extension(ext_dir.path_join("content/dome/Dome.gd"))
 
 	_register_input_action()
 	_add_translations()

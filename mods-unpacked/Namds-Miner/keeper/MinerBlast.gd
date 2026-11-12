@@ -16,6 +16,7 @@ var center: Vector2i
 var blastRange := 2
 var blastDamage := 6.0
 var teamId: String
+var vaulter := false
 
 var _arms: Array[Dictionary] = []
 var _centerAge := 0.0
@@ -70,6 +71,8 @@ func _advance(arm: Dictionary) -> void:
 		var survives: bool = tile.health > damage
 		if multiplayer.is_server():
 			tile.exploded = true
+			if vaulter:
+				tile.set_meta(MinerIds.VAULT_META, true)
 			tile.hit(Vector2(arm.dir), blastDamage, teamId, MinerIds.ID)
 		if survives:
 			arm.done = true

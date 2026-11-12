@@ -11,6 +11,9 @@ const TEXTS := {
 		"properties.keeper9.blastdamage": "Blast Power {}",
 		"properties.keeper9.fuse": "Fuse {}s",
 		"properties.keeper9.detonator": "Detonator",
+		"properties.keeper9.vaulter": "Bomber Vaulter",
+		"properties.keeper9.domer": "Bomber Domer",
+		"properties.keeper9.domerdamage": "Dome Bomb Damage {}",
 
 		"upgrades.keeper9mines1.title": "Extra Mine",
 		"upgrades.keeper9mines1.desc": "Mines on the field at once +1.",
@@ -36,5 +39,9 @@ const TEXTS := {
 		"upgrades.keeper9fuse2.desc": "Mines explode much sooner.",
 		"upgrades.keeper9detonator.title": "Detonator",
 		"upgrades.keeper9detonator.desc": "Press Drop Mine with no mine left, or on a mine, to blow up all your mines at once.",
+		"upgrades.keeper9vaulter.title": "Bomber Vaulter",
+		"upgrades.keeper9vaulter.desc": "Resources your mines blast loose go straight into the vault. No carrying.",
+		"upgrades.keeper9domer.title": "Bomber Domer",
+		"upgrades.keeper9domer.desc": "Any monster that attacks the dome gets a bomb thrown at it.",
 	},
 }

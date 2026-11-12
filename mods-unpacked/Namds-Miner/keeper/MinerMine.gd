@@ -11,6 +11,7 @@ var teamId: String
 var fuse := 2.5
 var blastRange := 2
 var blastDamage := 6.0
+var vaulter := false
 var exploded := false
 
 var _remaining := 0.0
@@ -60,6 +61,7 @@ func _explode() -> void:
 	blast.blastRange = blastRange
 	blast.blastDamage = blastDamage
 	blast.teamId = teamId
+	blast.vaulter = vaulter
 	map.add_child(blast)
 
 	queue_free()

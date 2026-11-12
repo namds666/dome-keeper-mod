@@ -6,6 +6,9 @@ const ID := "keeper9"
 const ACTION_MINE := "keeper9_mine"
 const MINE_GROUP := "namds_miner_mines"
 const TINT := Color(1.0, 0.78, 0.5)
+# Set on a tile the blast is about to hit when Bomber Vaulter is on: its drops go straight to the vault.
+const VAULT_META := &"namds_miner_vault"
+const DOMER_SOURCE := "keeper9domer"
 
 
 static func spriteframes_path(color: int) -> String:

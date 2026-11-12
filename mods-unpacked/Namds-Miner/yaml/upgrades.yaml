@@ -25,6 +25,9 @@ keeper9:
     - keeper9.blastdamage = 6
     - keeper9.fuse = 2.5
     - keeper9.detonator = false/h
+    - keeper9.vaulter = false/h
+    - keeper9.domer = false/h
+    - keeper9.domerdamage = 40
 
 keeper9mines1:
   limit: [mining]
@@ -93,3 +96,15 @@ keeper9detonator:
   propertyChanges:
     - keeper9.detonator = true
   predecessors: [keeper9fuse1]
+
+keeper9vaulter:
+  limit: [mining]
+  cost: iron=1
+  propertyChanges:
+    - keeper9.vaulter = true
+  predecessors: [keeper9]
+keeper9domer:
+  cost: iron=3, water=1
+  propertyChanges:
+    - keeper9.domer = true
+  predecessors: [keeper9vaulter]
