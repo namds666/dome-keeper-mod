@@ -1,6 +1,6 @@
 #!/bin/bash
 # Turns on mods (Steam Workshop subscriptions) for the macOS Steam build of Dome Keeper.
-# Adds two files and changes nothing in the game: undo with disable-mods.command.
+# Adds three files and changes nothing in the game: undo with disable-mods.command.
 set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
@@ -15,11 +15,12 @@ if [ ! -x "$GAME_MACOS/Dome Keeper" ]; then
 fi
 
 mkdir -p "$USER_DIR"
-cp "$HERE/ModLoaderStoreMac.gd" "$USER_DIR/ModLoaderStoreMac.gd"
+cp "$HERE/ModLoaderStoreMac.gd" "$HERE/BuildCustomizationMac.gd" "$USER_DIR/"
 cat > "$GAME_MACOS/override.cfg" <<'EOF'
 [autoload]
 
 ModLoaderStore="*user://ModLoaderStoreMac.gd"
+BuildCustomization="*user://BuildCustomizationMac.gd"
 EOF
 
 echo "Mods enabled. Start Dome Keeper from Steam as usual."

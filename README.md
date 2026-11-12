@@ -12,4 +12,4 @@ This repo holds only the mod's own files. It contains no Dome Keeper game files.
 
 ## Playing on macOS
 
-The Mac version of Dome Keeper ships with mods turned off. Run `mac/enable-mods.command` once (double-click it in Finder), then start the game from Steam. Your subscribed Workshop mods load. `mac/disable-mods.command` turns this off again.
+The Mac version of Dome Keeper ships with mods turned off. Run `mac/enable-mods.command` once (double-click it in Finder), then start the game from Steam. Your subscribed Workshop mods load, and the title screen gets its Mods button back. Mods made for game 3.x and older cannot run and stay off. `mac/disable-mods.command` turns this off again.

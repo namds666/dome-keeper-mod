@@ -32,7 +32,8 @@ Then copy the output over the repo root (keep `.git`, our files and `.tools`), r
 
 ## Game facts for 5.0.8 (checked in the decompiled code)
 
-- The macOS Steam build is exported with the `disable_mods` feature tag: mods are off and the title screen has no Mods button. `override.cfg` cannot remove a feature tag. `mac/enable-mods.command` puts `override.cfg` in `Contents/MacOS/` that swaps the `ModLoaderStore` autoload for `mac/ModLoaderStoreMac.gd` (copied to `user://`), which turns mods and Workshop loading on. `mac/disable-mods.command` undoes it. The stock profile `dome_default.tres` also has `load_from_steam_workshop = false`.
+- The macOS Steam build is exported with the `disable_mods` feature tag: mods are off and `BuildCustomization` hides the Mods button. `override.cfg` cannot remove a feature tag. `mac/enable-mods.command` puts `override.cfg` in `Contents/MacOS/` that swaps two autoloads for scripts copied to `user://`: `ModLoaderStoreMac.gd` turns mods and Workshop loading on, and `BuildCustomizationMac.gd` shows the Mods button. `mac/disable-mods.command` undoes it. The stock profile also has `load_from_steam_workshop = false`.
+- The stock game version check rejects every mod whose manifest names an older major version (a mod for 4.2.0 fails on 5.0.8). `ModLoaderStoreMac.gd` rejects only mods for 3.x and older (before Godot 4) and loads 4.x mods with a warning.
 
 - The docs' `Keepers.register_keeper` (5.1+) does not exist in 5.0.8. `mod_main.gd` uses it when present, else registers by hand: `Data.registerKeeper`, `GameWorld.unlockElement`, `take_over_path` aliases for sprite frames, loadout icons and `res://content/keeper/<Id>InputProcessor.gd`.
 - Keeper ids must be `keeper` + one digit: `LoadoutKeeper.to_bytes` sends `int(id.lstrip("keeper"))`, and `SaveGame` treats only 7-character ids as keepers. Vanilla uses 1–5. The Miner is `keeper9`.
