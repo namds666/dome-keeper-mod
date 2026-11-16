@@ -4,6 +4,7 @@ const MOD_DIR := "Namds-Miner"
 const LOG_NAME := "Namds-Miner:Main"
 const MinerIds := preload("res://mods-unpacked/Namds-Miner/miner_ids.gd")
 const Translations := preload("res://mods-unpacked/Namds-Miner/translations.gd")
+const MinerTechLayout := preload("res://mods-unpacked/Namds-Miner/techtree/MinerTechLayout.gd")
 
 const ICON_SOURCES := {
 	"keeper9mines1": "blastminingtriple",
@@ -12,9 +13,13 @@ const ICON_SOURCES := {
 	"keeper9range1": "blastminingblast1",
 	"keeper9range2": "blastminingblast2",
 	"keeper9range3": "blastminingblast3",
+	"keeper9range4": "blastminingblast3",
+	"keeper9range5": "blastminingblast3",
 	"keeper9power1": "blastminingblast1",
 	"keeper9power2": "blastminingblast2",
 	"keeper9power3": "blastminingblast3",
+	"keeper9power4": "blastminingblast3",
+	"keeper9power5": "blastminingblast3",
 	"keeper9fuse1": "blastminingproductiontime1",
 	"keeper9fuse2": "blastminingproductiontime1",
 	"keeper9detonator": "blastminingimpactdetonation",
@@ -24,11 +29,19 @@ const ICON_SOURCES := {
 	"keeper9cluster2": "blastminingstickycharge",
 	"keeper9cluster3": "blastminingstickycharge",
 	"keeper9clusterex": "blastminingtriple",
+	"keeper9holder": "blastminingproductiontime1",
+	"keeper9spread1": "blastminingtriple",
+	"keeper9spread2": "blastminingtriple",
+	"keeper9drops1": "blastminingstickycharge",
+	"keeper9drops2": "blastminingstickycharge",
+	"keeper9drops3": "blastminingstickycharge",
 }
 
 var mod_dir_path := ""
 # take_over_path only lasts while something references the resource.
 var _aliased_resources: Array[Resource] = []
+var _tracksToLayout := {}
+var _layingOut := false
 
 
 func _init() -> void:
@@ -39,7 +52,6 @@ func _init() -> void:
 	ModLoaderMod.install_script_extension(ext_dir.path_join("systems/audio/Audio.gd"))
 	ModLoaderMod.install_script_extension(ext_dir.path_join("content/map/Map.gd"))
 	ModLoaderMod.install_script_extension(ext_dir.path_join("content/dome/Dome.gd"))
-	ModLoaderMod.install_script_extension(ext_dir.path_join("content/techtree/techtrack/TechTrack.gd"))
 
 	_register_input_action()
 	_add_translations()
@@ -50,6 +62,27 @@ func _init() -> void:
 
 func _ready() -> void:
 	add_to_group("mod_init")
+	get_tree().node_added.connect(_on_node_added)
+
+
+func _on_node_added(node: Node) -> void:
+	if _layingOut:
+		return
+	var track = node if node is TechTrack else (node.track if node is TechPanel else null)
+	if not is_instance_valid(track) or not MinerTechLayout.isMinerTrack(track):
+		return
+	if _tracksToLayout.is_empty():
+		_layout_tracks.call_deferred()
+	_tracksToLayout[track] = true
+
+
+func _layout_tracks() -> void:
+	_layingOut = true
+	for track in _tracksToLayout:
+		if is_instance_valid(track):
+			MinerTechLayout.layout(track)
+	_tracksToLayout.clear()
+	_layingOut = false
 
 
 func modInit() -> void:

@@ -31,6 +31,9 @@ const DEFAULT_VALUES := {
 	"keeper9.domerdamage": 40,
 	"keeper9.clusters": 0,
 	"keeper9.clusterex": false,
+	"keeper9.holder": false,
+	"keeper9.spread": 0,
+	"keeper9.drops": 1,
 }
 const MENU_MAX_SPEED := 180
 
@@ -65,22 +68,56 @@ func drill_check() -> void:
 
 
 func mineHit() -> void:
+	_dropMines(true)
+
+
+# Bomber Holder: holding Drop Mine keeps dropping; only a fresh press detonates.
+func mineHold() -> void:
+	if Data.ofOr(playerId + ".keeper9.holder", false):
+		_dropMines(false)
+
+
+func _dropMines(canDetonate: bool) -> void:
 	if disabled or killed or isInsideDome or isInsideStation or not is_instance_valid(Level.map):
 		return
 	if not is_multiplayer_authority():
 		return
 
-	var coord := Vector2(Level.map.getTileCoord(global_position))
 	var placed := _placedMines()
-	var standingOnMine := placed.any(func(m): return m.coord == coord)
-	var outOfMines := placed.size() >= int(Data.of(playerId + ".keeper9.maxmines"))
-
-	if standingOnMine or outOfMines:
-		if Data.ofOr(playerId + ".keeper9.detonator", false) and placed.size() > 0:
+	var free := int(Data.of(playerId + ".keeper9.maxmines")) - placed.size()
+	var count := mini(int(Data.ofOr(playerId + ".keeper9.drops", 1)), free)
+	var cells := _dropCells(Level.map.getTileCoord(global_position), int(Data.ofOr(playerId + ".keeper9.spread", 0)), count)
+	if cells.is_empty():
+		if canDetonate and Data.ofOr(playerId + ".keeper9.detonator", false) and placed.size() > 0:
 			synchronizer.network_rpc(detonateAll, true)
 		return
 
-	synchronizer.network_rpc(placeMine.bind(coord), true)
+	for cell in cells:
+		synchronizer.network_rpc(placeMine.bind(Vector2(cell)), true)
+
+
+# Bomber Spreader / Dropper: free open cells in the square of this radius around the keeper.
+func _dropCells(center: Vector2i, radius: int, count: int) -> Array:
+	if count <= 0:
+		return []
+	var taken := {}
+	for mine in get_tree().get_nodes_in_group(MinerIds.MINE_GROUP):
+		taken[Vector2i(mine.coord)] = true
+	var cells: Array = []
+	for dy in range(-radius, radius + 1):
+		for dx in range(-radius, radius + 1):
+			var cell := center + Vector2i(dx, dy)
+			if taken.has(cell):
+				continue
+			if cell == center or _isOpen(cell):
+				cells.append(cell)
+	cells.shuffle()
+	return cells.slice(0, count)
+
+
+func _isOpen(cell: Vector2i) -> bool:
+	var key := Vector2(cell)
+	return not Level.map.tiles.has(key) and Level.map.tileData.get_resourcev(key) == Data.TILE_EMPTY
 
 
 @rpc("reliable")

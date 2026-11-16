@@ -30,6 +30,9 @@ keeper9:
     - keeper9.domerdamage = 40
     - keeper9.clusters = 0
     - keeper9.clusterex = false/h
+    - keeper9.holder = false/h
+    - keeper9.spread = 0
+    - keeper9.drops = 1
 
 keeper9mines1:
   limit: [mining]
@@ -53,34 +56,86 @@ keeper9range1:
   cost: iron=1
   propertyChanges:
     - keeper9.blastrange += 1
+  repeatable:
+    - times = 2
+    - cost.iron += 1
   predecessors: [keeper9]
 keeper9range2:
   cost: iron=3, water=1
   propertyChanges:
     - keeper9.blastrange += 1
+  repeatable:
+    - times = 2
+    - cost.iron += 1
   predecessors: [keeper9range1]
 keeper9range3:
   cost: iron=5, water=2
   propertyChanges:
-    - keeper9.blastrange += 2
+    - keeper9.blastrange += 1
+  repeatable:
+    - times = 3
+    - cost.iron += 2
   predecessors: [keeper9range2]
+keeper9range4:
+  cost: iron=8, water=3
+  propertyChanges:
+    - keeper9.blastrange += 2
+  repeatable:
+    - times = 2
+    - cost.iron += 2
+  predecessors: [keeper9range3]
+keeper9range5:
+  cost: iron=12, water=4
+  propertyChanges:
+    - keeper9.blastrange += 2
+  repeatable:
+    - times = 3
+    - cost.iron += 3
+    - cost.water += 1
+  predecessors: [keeper9range4]
 
 keeper9power1:
   limit: [mining]
   cost: iron=1
   propertyChanges:
     - keeper9.blastdamage += 10
+  repeatable:
+    - times = 3
+    - cost.iron += 1
   predecessors: [keeper9]
 keeper9power2:
   cost: iron=3, water=1
   propertyChanges:
     - keeper9.blastdamage += 30
+  repeatable:
+    - times = 3
+    - cost.iron += 1
   predecessors: [keeper9power1]
 keeper9power3:
   cost: iron=5, water=2
   propertyChanges:
-    - keeper9.blastdamage += 120
+    - keeper9.blastdamage += 80
+  repeatable:
+    - times = 3
+    - cost.iron += 2
   predecessors: [keeper9power2]
+keeper9power4:
+  cost: iron=8, water=3
+  propertyChanges:
+    - keeper9.blastdamage += 200
+  repeatable:
+    - times = 3
+    - cost.iron += 2
+  predecessors: [keeper9power3]
+keeper9power5:
+  cost: iron=12, water=4
+  propertyChanges:
+    - keeper9.blastdamage += 500
+  repeatable:
+    - times = 3
+    - cost.iron += 3
+    - cost.water += 1
+  predecessors: [keeper9power4]
 
 keeper9fuse1:
   limit: [mining]
@@ -131,3 +186,35 @@ keeper9clusterex:
   propertyChanges:
     - keeper9.clusterex = true
   predecessors: [keeper9cluster3]
+
+keeper9holder:
+  cost: iron=2, water=1
+  propertyChanges:
+    - keeper9.holder = true
+  predecessors: [keeper9detonator]
+
+keeper9spread1:
+  cost: iron=3, water=1
+  propertyChanges:
+    - keeper9.spread = 1
+  predecessors: [keeper9mines3]
+keeper9drops1:
+  cost: iron=3, water=1
+  propertyChanges:
+    - keeper9.drops += 1
+  predecessors: [keeper9spread1]
+keeper9drops2:
+  cost: iron=4, water=2
+  propertyChanges:
+    - keeper9.drops += 1
+  predecessors: [keeper9drops1]
+keeper9spread2:
+  cost: iron=6, water=2
+  propertyChanges:
+    - keeper9.spread = 2
+  predecessors: [keeper9drops2]
+keeper9drops3:
+  cost: iron=6, water=3
+  propertyChanges:
+    - keeper9.drops += 1
+  predecessors: [keeper9spread2]
