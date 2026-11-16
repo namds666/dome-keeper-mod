@@ -41,6 +41,7 @@ Then copy the output over the repo root (keep `.git`, our files and `.tools`), r
 - `Options.keeperInputSettings` needs `<id>.Mouse` and `<id>.Gamepad` entries, and `KeyBindingsPanel.translations` needs a label for every action in `Options.INPUT_ACTIONS`. Both are added by script extensions.
 - `take_over_path` aliases last only while referenced: keep the resources in an array on the mod node.
 - Tech tree icons load from `res://content/icons/<upgrade id>.png`, titles from `upgrades.<id>.title`. `shadowing` also replaces the title, so alias icons instead.
+- A script extension of `content/techtree/techtrack/TechTrack.gd` never takes effect: `TechTree.gd` preloads `TechTrack.tscn`, so the scene holds the vanilla script before mods load. `mod_main.gd` re-lays the Miner track from `SceneTree.node_added` (`techtree/MinerTechLayout.gd`).
 - Tile damage: `tile.hit(dir, damage, teamId, techId)`, server only. `Level.map.tiles` holds revealed tiles keyed by `Vector2`. Solid unrevealed cells have `tileData.get_resourcev(coord) != Data.TILE_EMPTY`.
 
 ## Ship a version
