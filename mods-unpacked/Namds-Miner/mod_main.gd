@@ -39,6 +39,7 @@ func _init() -> void:
 	ModLoaderMod.install_script_extension(ext_dir.path_join("systems/audio/Audio.gd"))
 	ModLoaderMod.install_script_extension(ext_dir.path_join("content/map/Map.gd"))
 	ModLoaderMod.install_script_extension(ext_dir.path_join("content/dome/Dome.gd"))
+	ModLoaderMod.install_script_extension(ext_dir.path_join("content/techtree/techtrack/TechTrack.gd"))
 
 	_register_input_action()
 	_add_translations()
