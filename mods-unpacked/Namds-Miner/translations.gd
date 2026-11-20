@@ -19,6 +19,7 @@ const TEXTS := {
 		"properties.keeper9.holder": "Bomber Holder",
 		"properties.keeper9.spread": "Drop Area Radius {}",
 		"properties.keeper9.drops": "Mines per Drop {}",
+		"properties.keeper9.breaker": "Bomber Breaker",
 
 		"upgrades.keeper9mines1.title": "Extra Mine",
 		"upgrades.keeper9mines1.desc": "Mines on the field at once +1.",
@@ -76,5 +77,7 @@ const TEXTS := {
 		"upgrades.keeper9spread2.desc": "Mines land on random free cells in the 5x5 area around you.",
 		"upgrades.keeper9drops3.title": "Bomber Dropper III",
 		"upgrades.keeper9drops3.desc": "Each drop throws 1 more mine at once.",
+		"upgrades.keeper9breaker.title": "Bomber Breaker",
+		"upgrades.keeper9breaker.desc": "Your blasts break indestructible rock too. The outer wall of the map still stops them.",
 	},
 }

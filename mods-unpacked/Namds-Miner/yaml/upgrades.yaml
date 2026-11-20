@@ -33,6 +33,7 @@ keeper9:
     - keeper9.holder = false/h
     - keeper9.spread = 0
     - keeper9.drops = 1
+    - keeper9.breaker = false/h
 
 keeper9mines1:
   limit: [mining]
@@ -218,3 +219,9 @@ keeper9drops3:
   propertyChanges:
     - keeper9.drops += 1
   predecessors: [keeper9spread2]
+
+keeper9breaker:
+  cost: iron=8, water=3
+  propertyChanges:
+    - keeper9.breaker = true
+  predecessors: [keeper9power3]

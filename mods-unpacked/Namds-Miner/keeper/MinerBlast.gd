@@ -17,6 +17,7 @@ var blastRange := 2
 var blastDamage := 6.0
 var teamId: String
 var vaulter := false
+var breaker := false
 
 var _arms: Array[Dictionary] = []
 var _centerAge := 0.0
@@ -61,7 +62,8 @@ func _advance(arm: Dictionary) -> void:
 
 	if map.tiles.has(key):
 		var tile = map.tiles[key]
-		if not Data.isDestructable(tile):
+		# Bomber Breaker, like the vanilla drill: indestructible rock breaks, the map's outer wall never does.
+		if not Data.isDestructable(tile) and not (breaker and map.isWithinBounds(key)):
 			arm.done = true
 			return
 		_burn(arm, cell)

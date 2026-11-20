@@ -18,6 +18,7 @@ var fuse := 2.5
 var blastRange := 2
 var blastDamage := 6.0
 var vaulter := false
+var breaker := false
 var clusters := 0
 var clusterEx := false
 var tier := 1
@@ -84,6 +85,7 @@ func _explode() -> void:
 	blast.blastDamage = blastDamage
 	blast.teamId = teamId
 	blast.vaulter = vaulter
+	blast.breaker = breaker
 	map.add_child(blast)
 
 	_spawn_clusters(map)
@@ -108,6 +110,7 @@ func _spawn_clusters(map) -> void:
 		child.blastRange = max(1, blastRange - 1)
 		child.blastDamage = blastDamage
 		child.vaulter = vaulter
+		child.breaker = breaker
 		child.clusters = clusters
 		child.clusterEx = clusterEx
 		child.tier = tier + 1

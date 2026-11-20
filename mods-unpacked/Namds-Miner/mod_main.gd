@@ -35,6 +35,7 @@ const ICON_SOURCES := {
 	"keeper9drops1": "blastminingstickycharge",
 	"keeper9drops2": "blastminingstickycharge",
 	"keeper9drops3": "blastminingstickycharge",
+	"keeper9breaker": "drill4",
 }
 
 var mod_dir_path := ""

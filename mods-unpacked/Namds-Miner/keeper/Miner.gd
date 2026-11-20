@@ -34,6 +34,7 @@ const DEFAULT_VALUES := {
 	"keeper9.holder": false,
 	"keeper9.spread": 0,
 	"keeper9.drops": 1,
+	"keeper9.breaker": false,
 }
 const MENU_MAX_SPEED := 180
 
@@ -132,6 +133,7 @@ func placeMine(coord: Vector2) -> void:
 	mine.blastRange = int(Data.of(playerId + ".keeper9.blastrange"))
 	mine.blastDamage = Data.of(playerId + ".keeper9.blastdamage")
 	mine.vaulter = Data.ofOr(playerId + ".keeper9.vaulter", false)
+	mine.breaker = Data.ofOr(playerId + ".keeper9.breaker", false)
 	mine.clusters = int(Data.ofOr(playerId + ".keeper9.clusters", 0))
 	mine.clusterEx = Data.ofOr(playerId + ".keeper9.clusterex", false)
 	Level.map.add_child(mine)
