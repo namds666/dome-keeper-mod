@@ -39,6 +39,7 @@ const DEFAULT_VALUES := {
 const MENU_MAX_SPEED := 180
 
 var _seeded := false
+var _upgradesRefreshed := false
 
 
 func init():
@@ -50,6 +51,10 @@ func init():
 func _physics_process(delta):
 	if not _seeded and playerId != "":
 		_seedMissingValues()
+	# A saved run keeps the upgrade list it was saved with; this adds upgrades newer mod versions brought.
+	if not _upgradesRefreshed and playerId != "" and StageManager.isInLevel():
+		_upgradesRefreshed = true
+		GameWorld.updateAvailableUpgrades(playerId)
 	super._physics_process(delta)
 
 
