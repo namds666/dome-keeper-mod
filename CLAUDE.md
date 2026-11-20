@@ -5,7 +5,7 @@ Remote: `git@github.com-namds666:namds666/dome-keeper-mod.git` (public). Commits
 
 ## Owner rules
 
-- When a task is done, commit and push to `main` without asking (owner 2026-11-20: "có cả 2").
+- When a task is done, commit and push to `main` without asking. If the commit changes `mods-unpacked/Namds-Miner/`, also ship it to the Workshop (§ Ship a version: bump the patch version, package, upload) in the same task (owner 2026-11-20: "có cả 2", "viết luôn vào claude.md repo này là auto làm vậy mỗi lần commit push").
 - Never run or launch the game (windowed or headless play) unless the owner asks for a test in that task (owner: "ê đừng spawn game ra nữa", "tao chưa cho phép mày test game, việc đó để sau nhé"). Static checks and packaging are fine.
 
 ## Legal (Modding EULA, docs wiki "Legal" / "Getting Started")
