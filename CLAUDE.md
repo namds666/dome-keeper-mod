@@ -7,7 +7,8 @@ Remote: `git@github.com-namds666:namds666/dome-keeper-mod.git` (public). Commits
 
 - When a task is done, run § Finish a task without asking. Commit and push alone never reach the game: it loads the mod only from the local Workshop folder (owner 2026-11-20: "có cả 2", "viết luôn vào claude.md repo này là auto làm vậy mỗi lần commit push", "viết hết tất cả mọi bước chi tiết vào làm rule và workflow đi, tao không muốn nhắc lại").
 - Never keep backup copies of old zips or files: git and the Workshop history keep old versions (owner 2026-11-20: "git sinh ra để làm con mẹ gì vậy").
-- Never run or launch the game (windowed or headless play) unless the owner asks for a test in that task (owner: "ê đừng spawn game ra nữa", "tao chưa cho phép mày test game, việc đó để sau nhé"). Static checks and packaging are fine.
+- Never run or launch the game (windowed or headless play) unless the owner asks for a test in that task (owner: "ê đừng spawn game ra nữa", "tao chưa cho phép mày test game, việc đó để sau nhé"). Static checks and packaging are fine. A request for proof ("tự chụp làm bằng chứng") is a request for a test: use § Prove in the game.
+- When the owner reports something missing or broken in the game, the cause is in the mod until a log or a run proves otherwise. Never blame the owner's side (Steam sync, an old save, a restart) from a guess, and never tell the owner a cause you have not proved. Check the facts first: which zip `modloader.log` loaded, and whether the shipped zip's data holds the change. Say "not proved yet" when it is not (owner 2026-11-20: "mày đừng có gaslight tao", "cái con mẹ gì cũng đổ tại tao", "Lưu vào repo để sau không phạm lỗi nữa"; Bomber Breaker was missing because of the yaml parser, while two guesses blamed Steam and the save).
 
 ## Legal (Modding EULA, docs wiki "Legal" / "Getting Started")
 
@@ -60,3 +61,13 @@ Then copy the output over the repo root (keep `.git`, our files and `.tools`), r
 3. Reply with the version, the Workshop link `https://steamcommunity.com/sharedfiles/filedetails/?id=<item id>` and "restart the game to load it".
 
 Check a version reached the game: `~/Library/Application Support/Godot/app_userdata/Dome Keeper/logs/modloader.log` names the zip it loaded.
+
+## Prove in the game (only when the owner asks for a test or proof)
+
+The driver is `mods-unpacked/Namds-MinerTest/mod_main.gd` (local, gitignored). It goes from the title to a new singleplayer run with the Miner, opens the tech tree, scrolls to the upgrade in `TARGET`, prints `TEST` lines and saves `.tools/test/techtree_breaker.png`. Edit its phases for other checks.
+1. Ship first (§ Finish a task), so the proof is of the zip the owner gets.
+2. Copy `~/Library/Application Support/Godot/app_userdata/Dome Keeper/singleplayer`, `savegame4_full*.json` and `mod_user_profiles.json` to the scratchpad: a test run overwrites the owner's run.
+3. `zip -qr "/Users/Shared/Steam Library/steamapps/common/Dome Keeper/mods/Namds-MinerTest.zip" mods-unpacked/Namds-MinerTest` (the mod loader also reads that folder).
+4. Run `"/Users/Shared/Steam Library/steamapps/common/Dome Keeper/Contents/MacOS/Dome Keeper"` in the background with Steam running; read the `TEST` lines and the `Namds-Miner-<version>.zip loaded` line from its output.
+5. Look at the screenshot, convert it with `cwebp -q 90` and link only the `.webp`.
+6. Restore the saves, delete the scratchpad copy and remove the game's `mods` folder.
