@@ -44,6 +44,7 @@ Then copy the output over the repo root (keep `.git`, our files and `.tools`), r
 - `take_over_path` aliases last only while referenced: keep the resources in an array on the mod node.
 - Tech tree icons load from `res://content/icons/<upgrade id>.png`, titles from `upgrades.<id>.title`. `shadowing` also replaces the title, so alias icons instead.
 - A script extension of `content/techtree/techtrack/TechTrack.gd` never takes effect: `TechTree.gd` preloads `TechTrack.tscn`, so the scene holds the vanilla script before mods load. `mod_main.gd` re-lays the Miner track from `SceneTree.node_added` (`techtree/MinerTechLayout.gd`).
+- `Data.parseUpgradesYaml` stores the last upgrade of a file only when a blank line follows it, so `yaml/upgrades.yaml` must end with `\n\n`. `workshop/package.py` refuses to package otherwise. Bomber Breaker (1.4.1, 1.4.2) was missing from the game because of this.
 - A saved run restores `GameWorld.upgrades` from the save (`setUpgradeData`), so upgrades a newer mod version adds stay hidden until `GameWorld.updateAvailableUpgrades(playerId)` runs. `Miner.gd` calls it once per level.
 - Tile damage: `tile.hit(dir, damage, teamId, techId)`, server only. `Level.map.tiles` holds revealed tiles keyed by `Vector2`. Solid unrevealed cells have `tileData.get_resourcev(coord) != Data.TILE_EMPTY`.
 
