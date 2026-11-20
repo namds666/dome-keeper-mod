@@ -5,7 +5,8 @@ Remote: `git@github.com-namds666:namds666/dome-keeper-mod.git` (public). Commits
 
 ## Owner rules
 
-- When a task is done, commit and push to `main` without asking. If the commit changes `mods-unpacked/Namds-Miner/`, also ship it to the Workshop (§ Ship a version: bump the patch version, package, upload) in the same task (owner 2026-11-20: "có cả 2", "viết luôn vào claude.md repo này là auto làm vậy mỗi lần commit push").
+- When a task is done, run § Finish a task without asking. Commit and push alone never reach the game: it loads the mod only from the local Workshop folder (owner 2026-11-20: "có cả 2", "viết luôn vào claude.md repo này là auto làm vậy mỗi lần commit push", "viết hết tất cả mọi bước chi tiết vào làm rule và workflow đi, tao không muốn nhắc lại").
+- Never keep backup copies of old zips or files: git and the Workshop history keep old versions (owner 2026-11-20: "git sinh ra để làm con mẹ gì vậy").
 - Never run or launch the game (windowed or headless play) unless the owner asks for a test in that task (owner: "ê đừng spawn game ra nữa", "tao chưa cho phép mày test game, việc đó để sau nhé"). Static checks and packaging are fine.
 
 ## Legal (Modding EULA, docs wiki "Legal" / "Getting Started")
@@ -45,9 +46,15 @@ Then copy the output over the repo root (keep `.git`, our files and `.tools`), r
 - A script extension of `content/techtree/techtrack/TechTrack.gd` never takes effect: `TechTree.gd` preloads `TechTrack.tscn`, so the scene holds the vanilla script before mods load. `mod_main.gd` re-lays the Miner track from `SceneTree.node_added` (`techtree/MinerTechLayout.gd`).
 - Tile damage: `tile.hit(dir, damage, teamId, techId)`, server only. `Level.map.tiles` holds revealed tiles keyed by `Vector2`. Solid unrevealed cells have `tileData.get_resourcev(coord) != Data.TILE_EMPTY`.
 
-## Ship a version
+## Finish a task
 
-1. Bump `version_number` in `mods-unpacked/Namds-Miner/manifest.json`.
-2. `python3 workshop/package.py` → `.tools/dist/Namds-Miner-<version>/Namds-Miner-<version>.zip`.
-3. `.tools/godot/macos_tools.app/Contents/MacOS/Godot --headless --path . --script workshop/upload.gd` with Steam running. It updates the item in `workshop/item_id.txt`, or creates one and writes the id there.
-4. Local test without the Workshop: put the zip in a new folder under `/Users/Shared/Steam Library/steamapps/workshop/content/1637320/`.
+1. Task changed `mods-unpacked/Namds-Miner/`: run `workshop/ship.sh` (Steam must be running). It
+   - bumps the patch `version_number` in `mods-unpacked/Namds-Miner/manifest.json` (`workshop/ship.sh 1.5.0` sets a version instead, for a bigger feature);
+   - runs `python3 workshop/package.py` → `.tools/dist/Namds-Miner-<version>/Namds-Miner-<version>.zip`;
+   - runs `workshop/upload.gd` with the modding Godot, which updates the item in `workshop/item_id.txt` (or creates one and writes the id there), and fails unless the log prints `UPLOADED`;
+   - replaces the zip in `/Users/Shared/Steam Library/steamapps/workshop/content/1637320/<item id>/` with the new one, so the next game start loads it at once (the Steam client can take a day to download an update).
+   A failed step stops the script: fix it and run it again, never skip it.
+2. Commit every changed file, the bumped `manifest.json` included, and push `main`.
+3. Reply with the version, the Workshop link `https://steamcommunity.com/sharedfiles/filedetails/?id=<item id>` and "restart the game to load it".
+
+Check a version reached the game: `~/Library/Application Support/Godot/app_userdata/Dome Keeper/logs/modloader.log` names the zip it loaded.
